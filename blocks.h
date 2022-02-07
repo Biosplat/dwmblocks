@@ -2,8 +2,14 @@
 static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 
+	// Spacer
+	//{ "", "echo \"\"", 1000000, 0 },
+
 	// Music
-	{ "", "if [ \"$(playerctl metadata artist)\" ]; then echo \"[  $(playerctl metadata title) ]\"; fi", 2, 0 },
+	{ "", "if [ \"$(playerctl metadata artist)\" ]; then echo \"[  $(playerctl metadata title | head -c 20) ]\"; fi", 2, 0 },
+
+	// Current Kernel Version
+	{ "", "echo \"[  $(uname --kernel-release) ]\"", 10, 0 },
 
 	// Memory
 	{ "", "echo \"[  $(free -h | awk '(NR==2){ print $3 }')B ]\" | sed -r 's/([0-9]+.?[0-9]+)/& /'", 2, 0 },
@@ -12,7 +18,7 @@ static const Block blocks[] = {
 	{ "", "echo \"[  $(pactl get-sink-volume $(pactl get-default-sink) | awk '(NR==1){ print $5 }') ]\"", 2, 0 },
 
 	// Date
-	{ "", "echo \"[  $(date \"+%b %e\") ]\"", 2, 0 },
+	{ "", "echo \"[  $(date \"+%b%e\") ]\"", 2, 0 },
 
 	// Time
 	{ "", "echo \"[  $(date \"+%R\") ]\"", 2, 0 }
