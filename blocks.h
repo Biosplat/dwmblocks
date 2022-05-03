@@ -3,7 +3,7 @@ static const Block blocks[] = {
 	/*Icon*/	/*Command*/		/*Update Interval*/	/*Update Signal*/
 
 	// Spacer
-	//{ "", "echo \"\"", 1000000, 0 },
+	{ "", "echo \"\"", 1000000, 0 },
 
 	// Music
 	{ "", "if [ \"$(playerctl metadata artist)\" ]; then echo \"[  $(playerctl metadata title | head -c 20) ]\"; fi", 2, 0 },
