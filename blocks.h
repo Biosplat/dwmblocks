@@ -6,12 +6,14 @@ static const Block blocks[] = {
 	{ "", "echo \"\"", 1000000, 0 },
 
 	// Music
+	// 
 	{ "", "if [ \"$(playerctl metadata artist)\" ]; then echo \"[  $(playerctl metadata title | head -c 20) ]\"; fi", 2, 0 },
 
 	// Current Kernel Version
-	{ "", "echo \"[  $(uname --kernel-release) ]\"", 10, 0 },
+	{ "", "echo \"[  $(uname --kernel-release | cut -d'-' -f1) ]\"", 10, 0 },
 
 	// Memory
+	//
 	{ "", "echo \"[  $(free -h | awk '(NR==2){ print $3 }')B ]\" | sed -r 's/([0-9]+.?[0-9]+)/& /'", 2, 0 },
 	
 	// Volume 
@@ -21,8 +23,8 @@ static const Block blocks[] = {
 	{ "", "echo \"[  $(date \"+%b%e\") ]\"", 2, 0 },
 
 	// Time
-	{ "", "echo \"[  $(date \"+%R\") ]\"", 2, 0 }
-
+	{ "", "echo \"[  $(date \"+%R\") ]\"", 2, 0 },
+	
 };
 
 //sets delimeter between status commands. NULL character ('\0') means no delimeter.
